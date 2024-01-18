@@ -1,0 +1,16 @@
+require:
+  - rubocop-rails
+
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  SuggestExtensions: false
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'db/migrate/20230929025656_devise_create_users.rb'
+    - 'db/migrate/20230929030104_devise_create_admins.rb'
+    - 'db/migrate/20230929033800_create_active_storage_tables.active_storage.rb'
+    - 'db/migrate/20230929042053_create_courses.rb'
+    - 'lib/tasks/auto_annotate_models.rake'

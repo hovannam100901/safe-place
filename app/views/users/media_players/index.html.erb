@@ -1,0 +1,58 @@
+<%= turbo_frame_tag "media" do %>
+  <div class="d-flex m-3 media_player justify-content-between" id="media_player">
+    <span id="podcast_info_container" class="d-inline-flex align-items-center">
+      <span id="podcast_image_container">
+        <%= image_tag 'podcast_default.jpg', id:'podcast_image' %>
+      </span>
+      <span class="m-2">
+        <p class="m-0 fs-5 fw-bold" id="podcast_name"></p>
+        <p class="m-0 fw-lighter text_opacity_50" id="podcast_author"></p>
+      </span>
+      <span>
+        <% if user_signed_in? %>
+          <%= inline_svg_tag('heart_icon.svg', id:"heart_podcast", class: "heart_podcast stroke-opacity-50 m-1") %>
+          <%= inline_svg_tag('bookmark_icon.svg', id:"bookmark_podcast" ,class: "bookmark_podcast stroke-opacity-50 m-1") %>
+        <% end %>
+      </span>
+    </span>
+    <span id="media_player_container" class="d-inline-flex flex-column justify-content-center align-items-center">
+      <audio id="audio-player" controls, style="display: none;">
+        <source src="" type="audio/mpeg">
+      </audio>
+      <div class="media-controls d-inline-flex justify-content-around">
+        <i id="prev-button" class="fa-solid fa-backward fa-lg text_opacity_50"></i>
+        <i id="rewind-button" class="fa-solid fa-rotate-left fa-lg text_opacity_50" title="Back 15s" ></i>
+        <i id="play-pause-icon" class="fa-solid fa-circle-play fa-2xl"></i>
+        <i id="forward-button" class="fa-solid fa-rotate-right fa-lg text_opacity_50" title="Next 15s" ></i>
+        <i id="next-button" class="fa-solid fa-forward fa-lg text_opacity_50"></i>
+      </div>
+      <div class="w-100 d-inline-flex justify-content-between">
+        <span class="text_opacity_50" id="audio_current_time"></span>
+        <input class="seek-slider" type="range" id="seek-slider" min="0" value="0">
+        <span class="text_opacity_50" id="audio_max_time"></span>
+      </div>
+    </span>
+    <span id="playlist_and_volumne_container" class="d-inline-flex align-items-center justify-content-end">
+      <span class="podcast-list">
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+          <i id="toggle-list-button" class="fa-solid fa-list fa-lg text_opacity_50" ></i>
+        </button>
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Playlist</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul id="podcast-list" class="list-group">
+            </ul>
+          </div>
+        </div>
+      </span>
+      <span>
+        <input class="seek-slider" type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+      </span>
+    </span>
+  </div>
+  <hr>
+  <%= javascript_include_tag 'users/media_player_control' %>
+<% end %>

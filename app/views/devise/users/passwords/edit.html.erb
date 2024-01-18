@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row justify-content-center custom_user_form_container">
+    <h2 class="text-center align-self-end mb-4 text-color-green fw-bold">Change your password</h2>
+    <div class="col-md-4">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'needs-validation' }) do |f| %>
+        <% flash.each do |type, message| %>
+          <div class="alert alert-danger text-center mt-4 alert-<%= type %>">
+            <%= message %>
+          </div>
+        <% end %>
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="mb-3">
+          <%= f.label :password, "New password", class: 'form-label text-color-green fw-bold fs-4' %><br />
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+          <% end %>
+          <%= f.password_field :password, class: 'form-control input-login', autofocus: true, required: true %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "Confirm new password", class: 'form-label text-color-green fw-bold fs-4' %>
+          <%= f.password_field :password_confirmation, class: 'form-control input-login', required: true %>
+        </div>
+
+        <div class="text-center mb-3">
+          <%= f.submit "Change my password", class: 'btn btn-success btn-lg w-100 h-100 btn-submit fw-bold' %>
+        </div>
+      <% end %>
+
+      <%= render "devise/users/shared/links" %>
+    </div>
+  </div>
+</div>

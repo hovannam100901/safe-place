@@ -1,0 +1,35 @@
+body {
+  font-family: "League Spartan", sans-serif;
+}
+
+.custom_user_form_container {
+  height: 100vh;
+}
+
+.text-color-green {
+  color: #1f7564;
+}
+
+
+.btn-submit {
+  background-color: #1f7564;
+  border-color: white;
+  border-radius: 1.5rem;
+  font-size: 3.5vh;
+}
+
+.input-login {
+  height: 7vh;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  color: #1f7564;
+}
+
+.input-login::placeholder {
+  opacity: 0.5;
+}
+
+.form-check-input:checked {
+  background-color: #1f7564;
+  border-color: #1f7564;
+}

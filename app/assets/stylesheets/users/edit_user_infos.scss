@@ -1,0 +1,28 @@
+.edit_user_infos_title {
+   color: #1F7564;
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.edit_user_infos_container{
+    .card {
+        margin: 20px auto;
+        padding: 20px;
+        .card-body {
+            .form_user_infos_label {
+                font-size: 20px;
+            }
+            .form_user_infos_textfield {
+                font-size: 20px;
+            }
+        }
+    }
+    .button_edit {
+        background-color: #1F7564; 
+        color: #fff; border: 2px solid #1F7564; 
+        font-size: 18px;
+        margin: 10px;
+    }
+}
+

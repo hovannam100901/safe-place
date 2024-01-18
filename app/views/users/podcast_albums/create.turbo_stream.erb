@@ -1,0 +1,12 @@
+<% if !@podcast_album.errors.any? %>
+  <%= turbo_stream.append 'albums' do %>
+    <%= render partial: 'users/podcasts/podcast_album', locals: { podcast_album: @podcast_album }%>
+        <script>
+                $("#podcastAlbumModal").modal("hide")
+                $(".index_text").hide()
+        </script>
+    <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
+
+

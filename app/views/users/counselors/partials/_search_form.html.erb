@@ -1,0 +1,7 @@
+<div class="search_form_room">
+    <%= search_form_for q, url: users_counselors_path, data: { controller: 'debounce', debounce_target: 'form', turbo_frame: 'search' }, class: 'd-flex justify-content-center' do |f| %>
+        <div class="input-group mb-3 input_search_room">
+            <%= f.search_field field, autocomplete: "off", data: { action: "input->debounce#search" }, class: 'form-control me-2', placeholder: placeholder %>
+        </div>
+    <% end %>
+</div>

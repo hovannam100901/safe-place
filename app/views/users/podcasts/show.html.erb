@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+  <% podcast_album.podcasts.each do |thing| %>
+      <%= podcast_album.podcasts.name%>
+  <% end %>
+<div>
+  <%= link_to "Edit this podcast", edit_users_podcast_path(@podcast) %> |
+  <%= link_to "Back to podcasts", users_podcasts_path %>
+
+  <%= button_to "Destroy this podcast", users_podcast_path(@podcast), method: :delete %>
+</div>

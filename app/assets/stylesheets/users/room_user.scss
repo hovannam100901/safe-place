@@ -1,0 +1,243 @@
+.item_room_join{
+  display: flex;
+  justify-content: center;
+  height: 18vh;
+  width: 18vh;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.item_join{
+  display: flex;
+  flex-direction: column; /* Đặt hướng cột */
+  justify-content: center; /* Canh giữa theo chiều ngang */
+  align-items: center;
+  text-align: center; 
+}
+
+.counselor_name {
+  font-size: 18px;
+}
+
+.counselor_avt {
+  width: 45px; 
+  height: 45px;
+  border-radius: 50%;
+}
+
+.btn_join{
+width: 9vh;
+}
+
+.paginate_room_join{
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: #fff;
+}
+
+.mini_menu{
+  margin: 3vh;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4vh;
+  border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+  border-radius: var(--bs-card-border-radius);
+}
+
+.room_btn_search{
+border-color: #1F7564;
+color: #1F7564;
+}
+
+.room_btn_search:hover{
+border-color: #1F7564;
+background-color: #1F7564;
+color: white;
+}
+
+.join_room_button{
+background-color: #1F7564;
+border-color: #1F7564;
+}
+
+.join_counselor_button{
+  background-color: #1F7564;
+  border-color: #1F7564;
+  }
+
+.join_room_button:hover, .join_room_button:active{
+background-color: #16594b;
+border-color: #16594b;
+}
+
+.join_room_button:disabled{
+background-color: #328879;
+border-color: #328879;
+}
+
+.out_room_page h1{
+color: #1F7564;
+margin-right: 50px;
+}
+
+.all_room_join{
+  border-radius: 8px;
+  // border: 1px solid #d2d2d2;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  // background-color: beige;
+}
+
+#paginate-element {
+nav {
+  background-color: #fff;
+}
+}
+
+
+.text-info {
+  color: #48b0f7 !important;
+}
+
+.custom_p_chat_box{
+  float: left;
+}
+
+.custom_link_to {
+  color: #fff; 
+  text-decoration: none;
+}
+
+.custom_room_page{
+  width: 100%;
+}
+.border_counselor{
+  border: 1px solid #d2d2d2;;
+  border-radius: 4px;
+  height: 38.7rem;
+  overflow-y: auto;
+}
+
+.show_message_container {
+  margin-top: 50px;
+  .list_room {
+    width: 27rem;
+    border: 0.5px solid #d2d2d2;
+    border-radius: 7px;
+    padding: 15px;
+  }
+  .button_show_room {
+    width: 25rem;
+    height: 5rem;
+    transition: background-color 0.3s, color 0.3s; 
+    &:hover {
+      background-color: #eceff2;
+    }
+  }
+  .box_chat_room{
+    height: 90vh;
+    width: 40vw;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 15px;
+    .card {
+      height: 100%;
+      border: none;
+      .card-header {
+        background-color: #fff;
+        .btn {
+          font-size: 0.875rem;
+          font-weight: 400 !important;
+          border-radius: 0.4rem;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+          border-image: initial;
+          padding: 0.5rem 1rem;
+        }
+        .btn.btn-icon {
+          height: calc(1.5em + 1.2rem);
+          width: calc(1.5em + 1.2rem);
+          color: rgb(255, 255, 255);
+          display: inline-flex;
+          -webkit-box-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          cursor: pointer;
+          padding: 0px;
+        }
+        .text-center {
+          margin: 0px;
+          font-size: 18px;
+          font-weight: bold;
+          color: #fff;
+        }
+      }
+      .card-body {
+        background-color: #eceff2;
+        border: none;
+      }
+      .card-footer {
+        background-color: #f1f2fa;;
+      }
+    }
+    #conversations {
+      height: 70vh;
+      width: 100%;
+      overflow-y: auto;
+      .his_bg {
+        background-color: #fff;
+        padding: 10px 20px;
+        max-width: 20vw;
+      }
+      .comment_content {
+        font-size: 18px;
+        word-wrap: break-word;
+      }
+      .img-hover{
+        width: 45px; 
+        height: 45px;
+        border-radius: 50%;
+      }
+      .button_delete {
+        color: #16594b;
+        text-decoration: none;
+      }
+      .message-time {
+        font-size: 11px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        margin: 15px;
+      }
+
+      .content_hover:hover .message-time {
+        opacity: 1;
+        transition: opacity 0.2s;
+      }
+
+    }
+    #form_comment {
+      .comment_textfield{
+        border: none;
+        padding: 0px 10px;
+        margin: 8px 5px;
+        border-radius: 7px;
+        height: 5vh;
+        width: 100%;
+        overflow-y: auto;
+      }
+      .button_send_message {
+        margin: 9px 5px;
+        height: 43px;
+      }
+    }
+    .room_text {
+      font-size: 23px;
+    }
+  }
+}
+
+
+
+

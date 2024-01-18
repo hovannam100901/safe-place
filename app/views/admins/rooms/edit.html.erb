@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "custom_room" do %>
+        <div class="modal-header">
+            <h1 class="modal-title fs-5 title_edit_room_admin" id="exampleModalLabel" >Edit room </h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <%#= render "shared/flash"%>
+        <%= render "admins/rooms/partials/form", room: @room %>
+        
+<% end %>

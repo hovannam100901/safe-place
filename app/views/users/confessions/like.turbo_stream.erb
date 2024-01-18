@@ -1,0 +1,7 @@
+<%= turbo_stream.update "#{dom_id(@confession)}_like" do %>
+  <%= render "users/shared/like", user: current_user, item: @confession %>
+<% end %>
+<%= turbo_stream.update "#{dom_id(@confession)}_count_likes" do %>
+  <%= render 'users/shared/count_likes', likeable: @confession %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

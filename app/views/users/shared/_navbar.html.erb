@@ -1,0 +1,67 @@
+<nav class="navbar main_nav">
+    <div class="container-fluid d-flex">
+        <span>
+            <span class="custom_navigator" data-action="click->frame-moving#back" type="button"><i class="fa-solid fa-chevron-left"></i></span>
+            <span class="custom_navigator" data-action="click->frame-moving#forward" type="button"><i class="fa-solid fa-chevron-right"></i></span>
+            <span class="custom_navigator">Placeholder change language</span>
+        </span>
+        <% if !user_signed_in? %>
+            <span class="ms-auto">
+                <a type="button" class="btn btn-light custom_signup" href="<%= sign_up_path %>">
+                    Sign up
+                </a>
+                <a type="button" class="btn btn-light custom_signin" href="<%= sign_in_path %>">
+                    Log in
+                </a>
+            </span>
+        <% else %>
+            <span class="ms-auto">
+                <a type="button" class="btn btn-light custom_signin" href=#>
+                    Install App
+                </a>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <i class="fa-solid fa-user fa-sm"></i>
+            </button>
+            <div class="offcanvas offcanvas-end main_menu" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <%= link_to "My Podcasts", users_podcasts_path, data: {turbo_frame: "main"}, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "My Bookmark", users_bookmarks_path, data: {turbo_frame: "main"}, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "Chat Room", users_counselors_path, class: "nav-link" %>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My Account
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <%= link_to "My Info", users_user_infos_path, class: "dropdown-item custom_item" %>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a href="<%= sign_out_path %>" data-turbo-method="delete" data-turbo-confirm="Are you sure you want to sign out?" class="dropdown-item custom_item">Sign Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</nav>
+

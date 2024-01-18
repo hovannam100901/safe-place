@@ -1,0 +1,57 @@
+<div class="container-fluid custom_body">
+  <div class="row custom_render_row">
+    <div class="col-md-3 custom_board">
+      <div class="custom_menu">
+        <ul>
+          <li><a href=<%= root_path %>><i class="fa-solid fa-house fa-lg"></i>Home</a></li>
+          <li>
+            <div class="btn-group dropend">
+              <a role="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-magnifying-glass fa-lg"></i>Search</a>
+              <%= render "users/shared/search_form" %>
+            </div>
+            </li>
+            <li><a href=#><i class="fa-solid fa-book fa-lg"></i>My courses</a><a href=#><i class="fa-solid fa-plus"></i></a></li>
+          </ul>
+        </div>
+        <%= turbo_frame_tag "new_confession_frame", src: new_users_confession_path, loading: :lazy do %>
+          <div class="centered_container centered_confession_frame">
+            <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+          </div>
+        <% end %>
+        <% if user_signed_in? %>
+          <%= turbo_stream_from "confessions_index_channel" %>
+        <% else %>
+          <%= turbo_stream_from "not_signed_in_confessions_index_channel" %>
+        <% end %>
+        <%= turbo_stream_from "confessions_show_channel" %>
+        <% id = (@confession_url.nil? || @confession_url.split("/").last == "confessions") ? "" : @confession_url.split("/").last %>
+        <%= turbo_frame_tag "board", src: users_confessions_path(confession_url: @confession_url, q: id), loading: :lazy do %>
+          <div class="centered_container centered_board">
+            <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-9 custom_main">
+        <%= render "users/shared/navbar" %>
+        <%= turbo_frame_tag "main", src: (@home.nil? ? users_album_homepages_path : @home), loading: :lazy, data: { frame_moving_target: "mainFrame", turbo_action: "advance" } do %>
+          <div class="centered_container centered_main">
+            <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 custom-media">
+        <%= turbo_frame_tag "media", src: users_media_players_path, loading: :lazy do %>
+          <div class="centered_container centered_main">
+            <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag 'users/icon_clicked_service' %>
+  <%= javascript_include_tag 'users/home_page' %>
+  <%= javascript_include_tag 'users/podcast_albums/albums_icon_click_service' %>

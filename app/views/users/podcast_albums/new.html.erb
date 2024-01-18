@@ -1,0 +1,9 @@
+
+<%= turbo_frame_tag "modal_for_podcast_album" do %>
+   <div class="card">
+    <div class="card-body">
+         <center class="form_title">You want to create new album?</center>
+        <%= render "form", podcast_album: @podcast_album %>
+    </div>
+   </div>
+<% end %>

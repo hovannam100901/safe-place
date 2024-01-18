@@ -1,0 +1,52 @@
+<%= turbo_frame_tag "main" do %>
+    <div class="container-fluid index_of_album">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-column justify-content-between" style="height: 95%;">
+                    <% if params[:q] %>
+                        <div class="all_album_search">
+                            <div class="album_card">
+                                <div class="d-flex justify-content-start album_item_container">
+                                    <% @albums.each_with_index do |album, index| %>
+                                        <%= render "users/album_homepages/album", album: album, index: index%>
+                                    <% end %> 
+                                </div>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="row d-flex flex-column">
+                            <div class="d-flex justify-content-between text_podcast">
+                                <h2 class="album_title">Album</h2>
+                                <% if @albums.size >= 6%>
+                                    <%= link_to "Show all", all_users_album_homepages_path, class:"btn btn-link button_show_all"%>
+                                <% end %>
+                            </div>
+                            <div class="container-scroll">
+                                <div class="d-flex justify-content-start">
+                                    <% @albums.each_with_index do |album, index| %>
+                                        <%= render "users/album_homepages/album", album: album, index: index%>
+                                    <% end %> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex flex-column podcast_album_recent">
+                            <div class="d-flex justify-content-between text_podcast_recent">
+                                <h2 class="album_title ">Recently Posted</h2>
+                                <% if @recent_albums.size >= 6%>
+                                    <%= link_to "Show all", all_users_album_homepages_path, class:"btn btn-link button_show_all"%>
+                                <% end %>
+                            </div>
+                            <div class="container-scroll" >
+                                <div class="d-flex justify-content-start">
+                                    <% @recent_albums.each_with_index do |album, index| %>  
+                                        <%= render "users/album_homepages/album", album: album, index: (index + 1)%>
+                                    <% end %> 
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

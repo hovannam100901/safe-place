@@ -1,0 +1,92 @@
+<div class="card main_card" id="<%= dom_id(confession) %>">
+  <div class="card-body" id="<%= "#{dom_id(confession)}_card_body" %>">
+    <%= render "users/confessions/confession_card_body", confession: confession %>
+  </div>
+  <div class="text-center custom_tag" id="<%= "#{dom_id(confession)}_card_tag" %>">
+    <%= render "users/confessions/confession_card_tag", confession: confession %>
+  </div>
+  <div class="d-flex justify-content-between px-3">
+    <div id="<%= dom_id(confession) %>_count_likes"><%= render 'users/shared/count_likes', likeable: confession %></div>
+    <div id="<%= dom_id(confession) %>_count_comments"><%= render 'users/shared/count_comments', commentable: confession %></div>
+  </div>
+  <div class="btn-group" role="group" aria-label="confession_group">
+    <% if user %>
+      <%= link_to like_users_confession_path(confession), class: "btn btn-light custom_button", type: "button", id: "#{dom_id(confession)}_like", data: {turbo_method: :post} do %>
+        <%= render "users/shared/like", user: user, item: confession %>
+      <% end %>
+    <% else %>
+      <button type="button" class="btn btn-light custom_button" disabled><i class="fa-solid fa-heart-crack"></i></button>
+    <% end %>
+    <button type="button" class="btn btn-light custom_button" data-bs-target="#<%= "#{dom_id(confession)}_show_modal" %>" data-bs-toggle="modal" id="<%= "#{dom_id(confession)}_show_button" %>">
+      <i class='fa-regular fa-message'></i>
+    </button>
+    <% if params[:confession_url] == users_confession_url(confession) %>
+      <script>
+        document.getElementById('<%= "#{dom_id(confession)}_show_button" %>').click();
+      </script>
+    <% end %>
+    <div class="modal fade confession_modal" id="<%= "#{dom_id(confession)}_show_modal" %>" aria-hidden="true" aria-labelledby="<%= "#{dom_id(confession)}_show_modal_label" %>" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content custom_modal">
+          <div class="modal-header">
+            <% if user %>
+              <a type="button" class="custom_action_btn" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                <i class="fa-solid fa-ellipsis"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item custom_dropdown" data-bs-target="#<%= "#{dom_id(confession)}_edit_modal" %>" data-bs-toggle="modal" type="button">
+                    Edit
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <%= link_to "Delete", users_confession_path(confession), data: {turbo_confirm: "Are you sure to delete this confession?", turbo_method: :delete}, class: "dropdown-item custom_dropdown", type: "button" %>
+                </li>
+              </ul>
+            <% end %>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body custom_main_body">
+            <%= turbo_frame_tag "#{dom_id(confession)}_show", src: users_confession_path(confession), loading: "lazy" do %>
+              <div class="centered_container centered_confession_frame">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+              </div>
+            <% end %>
+            <hr>
+            <%= turbo_stream_from "#{dom_id(confession)}_comments_channel" %>
+            <%= turbo_frame_tag "#{dom_id(confession)}_comments", src: users_confession_comments_path(confession), loading: "lazy" do %>
+              <div class="centered_container centered_confession_frame">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="<%= "#{dom_id(confession)}_edit_modal" %>" aria-hidden="true" aria-labelledby="<%= "#{dom_id(confession)}_edit_modal_label" %>" tabindex="-1" data-controller="modal" data-modal-target="modal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content custom_modal">
+          <div class="modal-header">
+            <button class="btn btn-secondary" data-bs-target="#<%= "#{dom_id(confession)}_show_modal" %>" data-bs-toggle="modal">Back</button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <% if user %>
+              <%= turbo_frame_tag "#{dom_id(confession)}_edit", src: edit_users_confession_path(confession), loading: "lazy" do %>
+                <div class="centered_container centered_confession_frame">
+                  <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+                </div>
+              <% end %>
+            <% else %>
+              <p> Please sign in to continue </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-light custom_button" disabled>
+      <i class="fa-regular fa-eye"></i>
+    </button>
+  </div>
+</div>

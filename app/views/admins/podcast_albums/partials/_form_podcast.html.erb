@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h3>Add New Podcast</h3>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger alert_create_podcast" role="alert" style="display: none">
+</div>
+<div class="container-fluid podcast_form_container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="modal-body">
+          <form id="createPodcastForm" method="post">
+          <div class="text-center">
+            <div class="row mb-4 align-items-center">
+              <label for="crePodcastImage" class="col-md-3 label form_podcast_label">Avatar</label>
+              <input type="file" id="crePodcastImage" class="col form-control form_podcast_textfield">
+            </div>
+            <div class="row mb-4 align-items-center">
+              <label for="crePodcastName" class="col-md-3 label form_podcast_label">Name</label>
+              <input type="text" id="crePodcastName" class="col form-control form_podcast_textfield">
+            </div>
+            <div class="row mb-4 align-items-center">
+              <label for="creAuthorName" class="col-md-3 label form_podcast_label">Author Name</label>
+              <input type="text" id="creAuthorName" class="col form-control form_podcast_textfield">
+            </div>
+            <div class="row mb-4 align-items-center">
+              <label for="crePodcastAudio" class="col-md-3 label form_podcast_label">Audio</label>
+              <input type="file" id="crePodcastAudio" class="col form-control form_podcast_textfield">
+            </div>
+            <div class="row mb-4 align-items-center">
+              <label for="creEpNumber" class="col-md-3 label form_podcast_label">Episode Number</label>
+              <input type="text" id="creEpNumber" class="col form-control form_podcast_textfield">
+            </div>
+        </div>
+          </form>
+        <div class="row">
+          <button id='btnCreatePodcast' class="col btn button_add" style="background-color: #1F7564; color: #fff; border: 2px solid #1F7564; font-size: 18px; margin: 10px 10px 25px 10px;" onclick="createPodcast()">Create</button>
+        </div>
+    </div>
+  </div>
+</div>
+</div>

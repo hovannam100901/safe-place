@@ -1,0 +1,10 @@
+<% if @result[:success] == true %>
+  window.location.reload()
+<% else %>
+  <% flash[:message].each do |val| %>
+    $(".modal-content .alert").prepend('<%= val %>')
+  <% end %>
+  $(".modal-content .alert").attr("style", "display:block")
+<% end %>
+
+

@@ -1,0 +1,120 @@
+.user_infos_container {
+  margin: 25px 0px;
+  .user_infos_title {
+    color: #1F7564;
+    font-size: 50px;
+    font-weight: bold;
+  }
+  .profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    object-fit: cover;
+    margin-left: 25px;
+  }
+  .user_infos_label {
+    color: #1F7564;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .form_password_label {
+    font-size: 18px;
+  }
+  .card {
+    border: none;
+    margin-top: 30px;
+    .card-body {
+      padding: 0;
+      margin: 0;
+      .form_user_infos_label {
+        font-size: 20px;
+      }
+      .form_user_infos_textfield {
+        font-size: 20px;
+      }
+    }
+  }
+  .support_textfield {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .button_edit {
+    padding: 4px 40px;
+    margin-bottom: 20px;
+    border-radius: 17px ;
+    font-size: 18px;
+    border: 1.5px solid #000000;
+    color: #1F7564;
+    &:hover {
+      background-color: #1F7564;
+      color: aliceblue;
+    }
+  }
+  .button_send_request {
+    background-color: #1F7564;
+    color: #FFFFFF;
+    padding: 15px 0px;
+    margin-bottom: 20px;
+    &:hover {
+      background-color: #1F7564;
+      color: aliceblue;
+    }
+  }
+  .button_customer_care {
+    background-color: #EBFFF9;
+    color: #1F7564;
+    padding: 15px 0px;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: #EBFFF9;
+      color: #1F7564;
+    }
+  }
+  .text-center{
+    margin-bottom: 10px;
+  }
+}
+
+.button_update_pw {
+  background-color: #FFFFFF;
+  color: #1F7564;
+  &:hover {
+    background-color: #1F7564;
+    color: #FFFFFF;
+  }
+}
+
+.button_back_user_info {
+  position: fixed;
+  margin-left: 22px;
+  margin-top: 15px;
+  font-size: 28px;
+  color: #1F7564;
+}
+.album-avatar {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  object-fit: cover;
+}
+.text-center {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  .button_change_pw {
+    background-color: #FFFFFF;
+    padding: 5px 140px;
+    font-size: 18px;
+    color: #1F7564;
+    &:hover {
+      background-color: #1F7564;
+      color: #FFFFFF;
+    }
+  }
+}
+
+
+
+
+

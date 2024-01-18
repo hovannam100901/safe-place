@@ -1,0 +1,20 @@
+<% podcast_albums.each do |album| %>
+  <tr id="album-<%= album.id %>">
+    <td><%= album.id %></td>
+    <% if album.image? %>
+      <td><%= image_tag album.image.url, alt: "Album Avatar", class: "",style: "width: 80px; height: 80px; border-radius: 50%" %></td>
+      <% else %>
+      <td><%= image_tag 'podcast.jpg', alt: "Album Avatar", class: "",style: " height: 80px; border-radius: 50%" %></td>
+    <% end %>
+    <td><%= album.name %></td>
+    <td><%= album.user.user_name %></td>
+    <td class="col-1"><%= link_to "Edit", edit_admins_podcast_album_path(album), remote: true, class: 'button_hover btn btn-primary bg_green border_green update_class button_width' %></td>
+    <td class="col-1"><%= link_to "Destroy", admins_podcast_album_path(album), data: { turbo_method: :delete, turbo_confirm: "Delete podcast album '#{album.name}'?" }, class: "destroy_class btn btn-danger button_width" %></td>
+    <td class="col-1"><%= link_to "Show", admins_podcast_album_path(album), remote: true, class: 'btn btn-warning button_width' %></td>
+  </tr>
+<% end %>
+<style>
+  .button_width{
+      width: 120px;
+  }
+</style>

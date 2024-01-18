@@ -1,0 +1,16 @@
+.btn-submit {
+    background-color: #1f7564;
+    border-color: white;
+    border-radius: 1.5rem;
+    font-size: 3vh;
+}
+
+.input-signup {
+  height: 5vh;
+  border-radius: 2px;
+  border-color: #1f7564;
+}
+
+.input-signup::placeholder {
+  opacity: 0.5;
+}

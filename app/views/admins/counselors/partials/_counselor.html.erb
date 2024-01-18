@@ -1,0 +1,18 @@
+<tr id="counselor-<%= counselor.id %>" data-anonymous="<%= counselor.anonymous ? '1' : '0' %>" >
+  <td><%= counselor.id %></td>
+  <td><%= counselor.user_info ? counselor.user_info.profile_name : "" %></td>
+  <td><%= counselor.user_info ? counselor.user_info.date_of_birth : "" %></td>
+  <td><%= counselor.phone_number %></td>
+  <td>
+    <div class="form-check form-switch" >
+      <%= check_box_tag "user_anonymous_#{counselor.id}", "1", counselor.anonymous, class: "form-check-input anonymous-switch", id: "user_anonymous_#{counselor.id}" %>
+      <label class="form-check-label" for="user_anonymous_<%= counselor.id %>"></label>
+    </div>
+  </td>
+  <td>
+    <button class="button_hidden" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+      <%= link_to "Edit", edit_admins_counselor_path(counselor),data:{turbo_frame: "modal_for_counselor"}, class: "btn text-white button_edit_user" %>
+    </button>
+    <%= link_to "Delete", admins_counselor_path(id: counselor.id, page: params[:page]), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} , class: "btn btn-danger text-white button_delete_user" %>
+  </td>
+</tr>

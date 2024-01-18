@@ -1,0 +1,4 @@
+<div class="item_join" id="button_join_<%= room.id %>">
+  <label><%= room.name%></label>
+  <%= button_to 'Join', join_room_users_room_path(room), method: :patch, class: "btn btn-primary btn_join join_room_button", disabled: true %>
+</div>

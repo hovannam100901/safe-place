@@ -1,0 +1,26 @@
+<%= turbo_frame_tag "new_confession_frame" do %>
+  <div class="new_confession">
+    <h4>Confession Board</h4>
+    <button type="button" class="btn btn-primary new_confession" data-bs-toggle="modal" data-bs-target="#confessionFormModal">
+      Do you have anything you want to share?
+    </button>
+    <div class="modal fade" id="confessionFormModal" tabindex="-1" aria-labelledby="confessionFormModalLabel" aria-hidden="true" data-controller="modal" data-modal-target="modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content custom_modal_confession">
+          <% if user_signed_in? %>
+            <%= render "users/confessions/form", confession: @confession, url: users_confessions_path %>
+          <% else %>
+            <div class="modal-header">
+              <i class="fa-solid fa-xmark modal_close_btn" data-bs-dismiss="modal" style="color: #9a9996;"></i>
+            </div>
+            <div class="modal-body">
+              <div class="text-center">
+                <h5> Please sign in to continue </h5>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

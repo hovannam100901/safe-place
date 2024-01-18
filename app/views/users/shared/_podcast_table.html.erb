@@ -1,0 +1,33 @@
+<div class="table-responsive">
+  <table class="table table-borderless mx-auto table-condensed align-middle" >
+    <thead>
+      <th class="col-md-1 fw-lighter text_opacity_50 width_id_col">#</th>
+      <th class="col-md-1 fw-lighter text_opacity_50">Title</th>
+      <th class="col-md-5"></th>
+      <th class="col-md-3 fw-lighter text_opacity_50">Date added</th>
+      <th class="col-md-1 text_opacity_50"><i class="fa-regular fa-clock" ></i></th>
+    </thead>
+    <tbody>
+      <% podcasts.each do |podcast| %>
+        <tr>
+          <td class="text_opacity_50"><%= podcast.episode_number %></td>
+          <td>
+            <% if podcast.image? %>
+              <%= image_tag podcast.image_url, alt: "Album Avatar", id: 'album_img', class: "img-fluid",  width: "100", height: "100" %>
+            <% else %>
+              <%= image_tag "podcast_default.jpg", alt: "Image", id: 'album_img', class: "img-fluid",  width: "100", height: "100" %>
+            <% end %>
+          </td>
+          <td>
+            <p class="fs-4"><%= podcast.name %></p>
+            <p class="text_opacity_50"><%= podcast.author_name %></p>
+          </td>
+          <td class="text_opacity_50">
+            <%= podcast.created_at.strftime("%b %d, %Y") %>
+          </td>
+          <td class="text_opacity_50 time"><%= formatted_duration(podcast.duration) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

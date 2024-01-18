@@ -1,0 +1,17 @@
+<div class="container-fluid flash" id="flash">
+  <div class="row justify-content-center">
+    <% flash.each do |key, value| %>
+      <% if key == "notice" %>
+        <div class="alert alert-success alert-dismissible fade show flash__value col-sm-12 col-md-6 col-lg-4" role="alert" data-controller="flash" data-action="animationend->flash#remove">
+          <%= value %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% elsif key == "alert" %>
+        <div class="alert alert-danger alert-dismissible fade show flash__value col-sm-12 col-md-6 col-lg-4" role="alert" data-controller="flash" data-action="animationend->flash#remove">
+          <%= value %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

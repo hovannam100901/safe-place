@@ -1,0 +1,437 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  overflow-y: scroll;
+  height: 100%;
+}
+body {
+  padding-right: 0 !important;
+}
+div {
+  &.custom_body {
+    flex-grow: 1;
+  }
+  &.custom_board {
+    padding: 0;
+  }
+  &.custom_menu {
+    height: 10rem;
+    margin: 10px;
+    font-family: var(--font-family-sans);
+    color: var(--color-primary);
+    font-weight: bolder;
+    line-height: var(--line-height-main);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    ul {
+      list-style-type: none;
+      margin-bottom: 0;
+      li {
+        margin: 10px 0;
+        a {
+          color: var(--color-primary);
+          text-decoration: none;
+          transition: color 200ms;
+          &:hover,
+          &:focus,
+          &:active {
+            color: var(--color-pink);
+          }
+        }
+        i {
+          margin-right: 10px;
+          &.fa-plus {
+            margin-top: 8px;
+            float: right;
+          }
+        }
+      }
+    }
+    #search_form {
+      width: 300px;
+      color: var(--color-primary);
+      font-size: var(--font-size-s);
+      .custom_submit {
+        color: var(--color-primary);
+        border: var(--border);
+        border-radius: var(--border-radius);
+        font-size: var(--font-size-s);
+      }
+    }
+  }
+  &.custom_main {
+    padding: 0 10px 10px 10px;
+  }
+  &.centered_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.centered_confession_frame {
+      height: 25vh;
+    }
+    &.centered_board {
+      height: 50vh;
+    }
+    &.centered_main {
+      height: 65vh;
+    }
+  }
+}
+turbo-frame#new_confession_frame {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  div {
+    &.new_confession {
+      overflow: hidden;
+      padding: 10px;
+      border: var(--border);
+      border-radius: var(--border-radius);
+      height: 10rem;
+      h1, h4 {
+        font-size: 25px;
+        color: #1f7564;
+        font-weight: bold;
+        font-family: "Signika", sans-serif;
+      }
+      h5 {
+        font-family: var(--font-family-sans);
+        color: var(--color-primary);
+      }
+      button.new_confession {
+        width: 100%;
+        height: 10vh;
+        margin-top: 10px;
+        background-color: #F9F9F9;
+        transition: color 200ms;
+        color: #919191;
+        font-weight: bolder;
+        font-size: 15px;
+        border: var(--border);
+        border-radius: 15px;
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--color-pink);
+          border-color: var(--color-pink);
+        }
+      }
+    }
+  }
+}
+turbo-frame#board {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  div {
+    &.confessions_board {
+      h1, h4 {
+        font-family: var(--font-family-sans);
+        color: var(--color-primary);
+        font-style: italic;
+      }
+      padding: 10px;
+      border: var(--border);
+      border-radius: var(--border-radius);
+      height: 28rem;
+      overflow: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      word-wrap: break-word;
+      h5, h6 {
+        color: var(--color-primary);
+        font-weight: bold;
+      }
+      .time_ago {
+        font-size: var(--font-size-xs);
+        font-style: italic;
+        color: var(--color-gray);
+      }
+      .custom_tag {
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+      .main_card {
+        margin-bottom: 10px;
+        min-height: 35vh;
+        border-radius: 10px;
+        .custom_button {
+          border-radius: 0;
+          &:hover,
+          &:focus,
+          &:active {
+            color: var(--color-primary);
+          }
+        }
+        .custom_action_btn {
+          color: var(--color-gray);
+          &:hover,
+          &:focus,
+          &:active {
+            color: var(--color-primary);
+          }
+        }
+        .custom_dropdown {
+          color: var(--color-primary);
+          &:focus,
+          &:active {
+            background-color: var(--color-gray);
+          }
+        }
+      }
+      .confesssion_show {
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        .confession_body {
+          margin-top: 10px;
+          flex-grow: 1;
+        }
+      }
+      .confession_show_group {
+        width: 100%;
+      }
+      .custom_comment {
+        margin: 10px;
+      }
+      .comment_body {
+        border-radius: var(--border-radius);
+        border-top: none;
+        border-left: none;
+        a {
+          text-decoration: none;
+          color: var(--color-gray);
+          &:hover,
+          &:focus,
+          &:active {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+    .custom_main_body {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  form.comment_form {
+    trix-editor {
+      height: 10vh;
+    }
+    label {
+      color: var(--color-primary);
+    }
+    input.form {
+      margin-top: 10px;
+      &.custom_submit {
+        color: var(--color-primary);
+        border: var(--border);
+        border-radius: var(--border-radius);
+      }
+    }
+    .form-switch {
+      line-height: 2.5;
+    }
+  }
+  .custom_breaker {
+    height: 5vh;
+  }
+  .custom_modal {
+    border-radius: var(--border-radius);
+  }
+  .custom_modal_confession{
+    border-radius: var(--border-radius);
+    border: none;
+  }
+}
+turbo-frame#main {
+  display: inline-block;
+  width: 100%;
+}
+nav.main_nav {
+  // height: 8vh;
+  top: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  border-radius: 10px 10px 0 0;
+  margin-top: 10px;
+  a {
+    color: var(--color-white);
+    transition: color 200ms;
+    margin-left: 4px;
+    margin-right: 4px;
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--color-glint);
+    }
+    &.custom_signup {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      font-size: var(--font-size-l);
+      font-weight: bolder;
+      border-radius: 30px;
+      padding: 4px 20px;
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-pink);
+      }
+    }
+    &.custom_signin {
+      color: var(--color-pink);
+      font-size: var(--font-size-l);
+      font-weight: bolder;
+      border-radius: 30px;
+      padding: 4px 20px;
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-primary);
+      }
+    }
+  }
+  span.custom_navigator {
+    color: var(--color-white);
+    transition: color 200ms;
+    margin-left: 4px;
+    margin-right: 4px;
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--color-glint);
+    }
+  }
+  button.navbar-toggler {
+    border-radius: 25px;
+    background-color: var(--color-white);
+    border: var(--border);
+    padding: 8px 12px;
+    margin-left: 12px;
+  }
+  .main_menu {
+    color: var(--color-primary);
+    a {
+      color: var(--color-primary);
+      &:hover,
+      &:focus,
+      &:active {
+      color: var(--color-gray);
+    }
+      &.custom_item {
+        width: 97%;
+      }
+    }
+  }
+}
+footer.main_footer {
+  background-color: var(--color-primary-bg);
+  color: var(--color-black);
+  line-height: var(--line-height-body);
+  font-family: var(--font-family-sans);
+  margin-bottom: 24px;
+  h3 {
+    font-size: var(--font-size-l);
+    font-weight: bolder;
+    margin-top: 12px;
+  }
+  a {
+    color: var(--color-gray);
+    font-size: var(--font-size-s);
+    font-weight: bolder;
+    text-decoration: none;
+    transition: color 200ms;
+    line-height: var(--line-height-main);
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--color-primary);
+    }
+    &.facebook {
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-facebook-blue);
+      }
+      margin-top: 12px;
+    }
+    &.youtube {
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--color-youtube-red);
+      }
+      margin-top: 12px;
+    }
+  }
+  img,
+  picture,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+  span.spacing {
+    display: inline-block;
+    margin: 12px;
+  }
+  div.justify_content {
+    display: flex;
+    justify-content: center;
+    div {
+      width: 130px;
+    }
+  }
+}
+form.confession_form {
+  label {
+    color: var(--color-primary);
+  }
+  input.form {
+    margin-top: 10px;
+    &.custom_submit {
+      margin-left: 10%;
+      text-align: center;
+      width: 80%;
+      height: 52px;
+      background-color: #1F7564FF;
+      color: white;
+      margin-bottom: 25px;
+      border-radius: 7px;
+    }
+  }
+  .form-switch {
+    line-height: 2.5;
+  }
+}
+form {
+  .pickerContainer {
+    position: fixed;
+    z-index: 9998;
+    cursor: move;
+  }
+  .trix-button-group--file-tools {
+    display: none;
+  }
+  trix-editor {
+    height: 40vh;
+    overflow: auto;
+  }
+}
+.confession-content{
+  height: 30vh;
+}
+.confession-username{
+  font-family: "League Spartan", sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  color: #1a1a1a;
+}

@@ -1,0 +1,8 @@
+<%= turbo_stream.append("confessions") do %>
+  <%= render "users/confessions/confessions_index", user: current_user, confessions: @confessions %>
+<% end %>
+<% if @has_next_page %>
+  <%= turbo_stream.replace "confessions_pagination" do %>
+    <%= turbo_frame_tag "confessions_pagination", src: users_confessions_path(page: @current_page + 1, format: :turbo_stream, q: params[:q]), loading: "lazy" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,60 @@
+<%= link_to root_path do %>
+  <i class="fa-solid fa-angle-left button_back_user_info"></i>
+<% end %>
+
+<% if current_user.type == "User" %>
+  <div class="show_message_container">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-column list_room">
+        <%= render "users/counselors/partials/action"%>
+
+        <%= render 'users/counselors/partials/search_form', q: @q, field: :user_name_cont, placeholder: 'Search counselor name' %>
+
+        <%= turbo_frame_tag 'search', target: "_top" do %>
+          <div class="d-flex flex-column justify-content-start mt-3">
+            <%= render "users/counselors/partials/counselors", counselors: @counselors %>
+            <%= render "users/counselors/partials/pagination", collection: @counselors %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= turbo_frame_tag "show_message" do %>
+        <div class="card box_chat_room ms-5">
+          <div class="card-body">
+            <div class="text-center room_text">
+              Choose room to chat with counselor
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="show_message_container">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex flex-column list_room">
+        <%= render "users/counselors/partials/action"%>
+
+        <%= render 'users/counselors/partials/search_form', q: @q, field: :user_user_name_cont, placeholder: 'Search user name' %>
+
+        <%= turbo_frame_tag 'search', target: "_top" do %>
+          <div class="d-flex flex-column justify-content-start mt-3">
+            <%= render "users/counselors/partials/rooms", rooms: @rooms %>
+            <%= render "users/counselors/partials/pagination", collection: @rooms %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= turbo_frame_tag "show_message" do %>
+        <div class="card box_chat_room ms-5">
+          <div class="card-body">
+            <div class="text-center room_text">
+              Choose room to chat with user
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

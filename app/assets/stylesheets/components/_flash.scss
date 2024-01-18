@@ -1,0 +1,8 @@
+.flash {
+  position: fixed;
+  top: 10px;
+  z-index: 9999;
+  &__value {
+    animation: appear-then-fade 5s both;
+  }
+}

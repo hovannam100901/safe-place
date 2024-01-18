@@ -1,0 +1,13 @@
+<% if @room.errors.any? %>
+  <%= turbo_stream.update "room_model", partial: "admins/rooms/partials/form",
+        locals: { room: @room } %>
+<% else %>
+  <%= turbo_stream.prepend "room_table" do %>
+    <%= render partial: "admins/rooms/partials/room_table", locals: { room: @room } %>
+  <% end %>
+  <%= turbo_stream.update 'room_model', partial: "admins/rooms/partials/form", locals: {room: Room.new} %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>
+
+

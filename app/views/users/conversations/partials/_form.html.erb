@@ -1,0 +1,6 @@
+<%= form_with(model: [@room, Conversation.new], url: users_room_conversations_path(@room), id: "form_comment") do |form| %>
+  <div class="d-flex">
+    <%= form.text_field :content, class: "comment_textfield", placeholder:"Write a message"%>
+    <%= form.submit "Send", class:"btn btn-primary button_send_message" %>
+  </div>
+<% end %>

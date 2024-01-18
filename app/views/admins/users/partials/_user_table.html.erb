@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class = 'table mx-auto table-condensed align-middle user-table'>
+    <thead class="align-middle">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Profile Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Anonymous</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody id="users-tbody">
+      <% users.each do |user| %>
+        <%= render 'admins/users/partials/user', user: user %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="d-flex justify-content-end mt-1" id="paginate-user-table">
+  <nav aria-label="Page navigation example">
+    <%= paginate users, theme: 'bootstrap-5', window: 1 %>
+  </nav>
+</div>

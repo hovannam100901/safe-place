@@ -1,0 +1,22 @@
+<% @counselors.each do |counselor| %>
+<%= link_to users_room_path(counselor), data: {turbo_frame: "show_message"}, class: "btn button_show_room" do %>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+            <div>
+                <% if counselor&.user_info&.avatar? %>
+                <%= image_tag(counselor.user_info.avatar_url, class:"counselor_avt")%>
+                <% else %>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" alt="avatar 1" class="counselor_avt">
+                <% end %>
+            </div>
+            <div class="ms-3">
+                <%= counselor.user_name %>
+            </div>
+        </div>
+        <div>
+            <i class="fa-solid fa-ellipsis"></i>
+        </div>
+  </div>
+<% end %>
+<hr>
+<% end %>

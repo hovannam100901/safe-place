@@ -1,0 +1,9 @@
+<div class="modal fade" id="listPodcastModal" tabindex="-1" aria-labelledby="listPodcastModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <%= turbo_frame_tag "show_list_podcast"%>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'users/podcasts/close_show_podcast_modal' %>

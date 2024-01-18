@@ -1,0 +1,10 @@
+<% if @confession.errors.any? %>
+  <%= turbo_stream.replace "#{dom_id(Confession.new)}_form" do %>
+    <%= render "users/confessions/form", confession: @confession, url: users_confessions_path %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "#{dom_id(Confession.new)}_form" do %>
+    <%= render "users/confessions/form", confession: Confession.new, url: users_confessions_path %>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

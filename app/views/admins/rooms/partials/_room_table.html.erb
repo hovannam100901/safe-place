@@ -1,0 +1,34 @@
+
+<tr id="<%= dom_id room %>">
+  <td><%= room.id %></td>
+  <td>
+    <%= room.name%>
+  </td>
+  <% if !room.user_id.nil? %>
+    <td><%= room.user.user_name %></td>
+  <% else %>
+    <td></td>
+  <% end %>
+  <td>
+    <%= room&.counselor&.user_name%>
+  </td>
+  <td>
+      <div class="form-check form-switch d-flex justify-content-center">
+        <%= check_box_tag "status_#{room.id}", "enable", (room.status == "enable"), class: "form-check-input anonymous-switch-room switch_status", id: "room_anonymous_#{room.id}" %>
+        <label class="form-check-label" for="room_anonymous_<%= room.id %>"></label>
+      </div>
+  </td>
+  <td>
+      <button class="button_hidden " data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <%= link_to "Edit ", edit_admins_room_path(room), class: "btn btn-success no-underline custom-link width_btn_room ", data: {turbo_frame: "custom_room"} %>
+      </button>
+      <%= link_to "Delete ", admins_room_path(room), data: { turbo_method: "delete", turbo_confirm: "Are you sure ?" }, class: "no-underline custom-link  btn btn-danger width_btn_room " %>
+  </td>
+</tr>
+
+
+
+
+
+
+

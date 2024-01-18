@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+  <%= turbo_stream.replace "#{dom_id(@user)}_form" do %>
+    <%= render "admins/users/partials/form", user: @user %>
+  <% end %>
+<% else %>
+  <% if @user.type == 'User' %>
+    <%= turbo_stream.replace "user-#{@user.id}", partial: "admins/users/partials/user", locals: { user: @user } %>
+  <% else %>
+    <%= turbo_stream.remove "user-#{@user.id}" %>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

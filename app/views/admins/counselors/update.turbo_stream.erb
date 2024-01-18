@@ -1,0 +1,12 @@
+<% if @counselor.errors.any? %>
+  <%= turbo_stream.replace "#{dom_id(@counselor)}_form" do %>
+    <%= render "admins/counselors/partials/form", counselor: @counselor %>
+  <% end %>
+<% else %>
+  <% if @counselor.type == 'Counselor' %>
+    <%= turbo_stream.replace "counselor-#{@counselor.id}", partial: "admins/counselors/partials/counselor", locals: { counselor: @counselor } %>
+  <% else %>
+    <%= turbo_stream.remove "counselor-#{@counselor.id}" %>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

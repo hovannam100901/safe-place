@@ -1,0 +1,26 @@
+
+<div class="container podcast_album_form">
+    <%= form_with(model: [:users, podcast_album], id: "#{dom_id(podcast_album)}_form") do |f| %>
+        <div class="text-center">
+            <label for="img-input" class="image-label">
+                <%= f.file_field :image, class: "form-control", id: 'img-input', style: "display: none;" %>
+                <% if podcast_album.image? %>
+                    <%= image_tag podcast_album.image_url, alt: "Album Avatar", class: "album-avatar", id: 'album_img' %>
+                <% else %>
+                <%= image_tag("camera.png", alt: "Image", class: "album-avatar", id: 'album_img') %>
+
+                <% end %>
+            </label>
+        </div>
+        <%= f.text_field :name, class: "form-control form_podcast_textfield"%>
+        <div class="row justify-content-center">
+            <% if podcast_album.persisted? %>
+                <%= link_to "Delete", users_podcast_album_path(podcast_album), id: "deleteButton", class: "col-5 btn btn-danger button_close", data: {turbo_method: :delete}  %>
+            <% end %>
+            <%= f.submit "Save", class: "col-5 btn button_add"%>
+        </div>
+    <% end %>
+</div>
+
+<%= javascript_include_tag 'users/podcasts/close_album_modal'%>
+<%= javascript_include_tag 'users/podcasts/podcast' %>

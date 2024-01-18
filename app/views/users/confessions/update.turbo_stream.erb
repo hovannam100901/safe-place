@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "#{dom_id(@confession)}_form" do %>
+  <%= render "users/confessions/form", confession: @confession, url: users_confession_path(@confession) %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

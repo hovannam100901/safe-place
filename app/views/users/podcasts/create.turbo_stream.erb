@@ -1,0 +1,6 @@
+<% if !@podcast.errors.any? %>
+  <%= turbo_stream.prepend 'recent_podcasts_frame' do  %>
+    <%= render partial: 'podcast', locals: { podcast: @podcast }%>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>

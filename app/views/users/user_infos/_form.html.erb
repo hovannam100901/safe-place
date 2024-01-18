@@ -1,0 +1,56 @@
+
+<div class="container-fluid edit_user_infos_container">
+  <div class = "row justify-content-center">
+    <div class="col-md-10">
+      <%= form_for user, url: users_user_infos_path, method: :patch do |f| %>
+            <div class="card mb-4" >
+                <div class="card-body">
+                    <%= f.fields_for :user_info do |uif| %>
+                     <div class="image text-center">
+                      <label for="img-input" class="image-label">
+                          <%= uif.file_field :avatar, class: "form-control", id: 'img-input', style: "display: none;" %>
+                          <% if user.user_info.avatar? %>
+                              <%= image_tag user.user_info.avatar_url, alt: "Album Avatar", class: "album-avatar", id: 'album_img' %>
+                          <% else %>
+                            <%= image_tag("camera.png", alt: "Image", class: "album-avatar", id: 'album_img') %>
+                          <% end %>
+                      </label>
+                    </div>
+                    <% end %>
+                    <div class="row mb-4 align-items-center ">
+                        <%= f.label :email, class:"col-4 label form_user_infos_label" %>
+                        <%= f.email_field :email, class:"col form-control form_user_infos_textfield", disabled: true%>
+                    </div>
+                    <div class="row mb-4 align-items-center">
+                        <%= f.label :user_name, class:"col-4 label form_user_infos_label " %>
+                        <%= f.text_field :user_name, class:"col form-control form_user_infos_textfield" %>
+                    </div>
+                    <div class="row mb-4 align-items-center ">
+                        <%= f.label :phone_number, class:"col-4 label form_user_infos_label" %>
+                        <%= f.text_field :phone_number, class:"col form-control form_user_infos_textfield" %>
+                    </div>
+                    <%= f.fields_for :user_info do |uif| %>
+                      <div class="row mb-4 align-items-center">
+                        <%= uif.label :gender, class:"col-4 label form_user_infos_label" %>
+                        <%= uif.select :gender, UserInfo.genders.keys, { }, { class: "col form-control form_user_infos_textfield" } %>
+                      </div>
+                      <div class="row mb-4 align-items-center">
+                        <%= uif.label :date_of_birth, class:"col-4 label form_user_infos_label" %>
+                        <%= uif.date_field :date_of_birth, class: "col form-control form_user_infos_textfield" %>
+                      </div>
+                      <div class="row mb-4 align-items-center">
+                        <%= uif.label :address, class:"col-4 form_user_infos_label" %>
+                        <%= uif.text_field :address, class: "col form-control form_user_infos_textfield" %>
+                      </div>
+                    <% end %>
+                </div>   
+            </div>
+            <div class="row">
+              <%= f.submit "Update", class:"col btn button_edit"%>
+            </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'users/podcasts/podcast' %>

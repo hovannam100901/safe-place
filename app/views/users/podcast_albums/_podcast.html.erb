@@ -1,0 +1,16 @@
+<tr class="podcast_detail ">
+    <td class="podcast_filed episode" >Ep.<%= podcast.episode_number %></td>
+    <td>
+        <% if podcast.image? %>
+            <%= image_tag podcast.image_url, alt: "Album Avatar", id: 'album_img', class: " image_podcast",  width: "100", height: "100" %>
+        <% else %>
+            <%= image_tag "podcast_default.jpg", alt: "Image", id: 'album_img', class: " image_podcast",  width: "100", height: "100" %>
+        <% end %>
+    </td>
+    <td>
+        <h3 class="podcast_filed name"><%= podcast.name %></h3>
+        <h6 class="podcast_filed"><%= podcast.author_name %></h6>
+    </td>
+    <td class="podcast_filed created"><%= podcast.created_at.strftime("%b %d, %Y") %></td>
+    <td><%= formatted_duration(podcast.duration) %></td>
+</tr>

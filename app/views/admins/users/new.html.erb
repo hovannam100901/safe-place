@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "modal_for_user" do  %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">New User</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <%= render "admins/users/partials/form", user: @user, page: params[:page] %>
+    </div>
+  </div>
+<% end %>

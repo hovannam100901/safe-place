@@ -1,0 +1,2 @@
+$("#modalShowAlbum .modal-content").html('<%= escape_javascript render 'admins/podcast_albums/partials/podcast',content_type: 'text/html', podcast: @podcast, podcast_album_id: @podcast_album.id %>')
+$("#modalShowAlbum").modal('show');

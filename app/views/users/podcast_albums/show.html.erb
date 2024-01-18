@@ -1,0 +1,38 @@
+
+<%= turbo_frame_tag "show_list_podcast" do %>
+    <div class="modal-header d-flex align-items-center">
+        <div class="modal-title">
+            <p style="font-size: 20px;" class="fw-bolder">Albums: <%=@podcast_album.name%></p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="show_list_podcast_from_album">
+            <% if @podcasts.empty? %>
+            <div class="modal-body">
+                <div class="text-center">
+                    No podcast available
+                </div>
+            </div>
+            <% else %>
+                <p>Popular</p>
+                <table  class="table table-borderless mx-auto table-condensed align-middle" >
+                <thead>
+                <th class="col-md-1 fw-lighter">#</th>
+                <th class="col-md-1 fw-lighter">Title</th>
+                <th class="col-md-5"></th>
+                <th class="col-md-3 fw-lighter">Date added</th>
+                <th class="col-md-1"><i class="fa-regular fa-clock" style="color: #d4d4d4;"></i></th>
+                </thead>
+                <tbody>
+                <% @podcasts.each do |podcast| %>
+                    <%= render "users/podcast_albums/podcast", podcast: podcast%>
+                <% end %>
+                </tbody>
+            </table>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
+

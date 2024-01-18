@@ -1,0 +1,55 @@
+<%= turbo_frame_tag "main" do %>
+  <div class="card album_showpage">
+    <div class="d-flex card-header align-items-center justify-content-between flex-nowrap">
+      <span class="d-flex align-items-center">
+        <span class="album_image_col">
+          <% if @album.image? %>
+            <%= image_tag @album.image_url, alt: "Album Avatar", id: 'album_img', class: "album_image" %>
+          <% else %>
+            <%= image_tag "album_default.jpg", alt: "Image", id: 'album_img', class: "album_image" %>
+          <% end %>
+        </span>
+        <span class="album_info">
+          <p class="fw-lighter"><%= @album.podcasts.count %> sessions </p>
+          <p class="text-white fw-bold fs-2"><%= @album.name %></p>
+          <p class="fw-light fs-4">
+            <% if @album.user.user_info && !@album.user.user_info.profile_name.blank? && @album.user.anonymous == false  %>
+              <%= @album.user.user_info.profile_name %>
+            <% else %>
+              Anonymous 
+            <% end %>
+          </p>
+          <div>
+            <% if user_signed_in? %>
+              <% if current_user.likes.exists?(likeable: @album) %>
+                <%= inline_svg_tag('heart_icon.svg', class:"heart_podcast_albums stroke-red fill-red", data: { album_id: @album.id } ) %>
+              <% else %>
+                <%= inline_svg_tag('heart_icon.svg', class:"heart_podcast_albums", data: { album_id: @album.id } ) %>
+              <% end %>
+              <% if current_user.bookmarks.exists?(bookmarkable: @album) %>
+                <%= inline_svg_tag('bookmark_icon.svg', class:"bookmark_podcast_albums stroke-red", data: { album_id: @album.id } ) %>
+              <% else %>
+                <%= inline_svg_tag('bookmark_icon.svg', class:"bookmark_podcast_albums", data: { album_id: @album.id } ) %>
+              <% end %>
+            <% end %>
+          </div>
+        </span>
+      </span>
+      <span class="album_play d-flex flex-column align-items-end">
+        <h3 class="text-white mt-4">Recommend</h2>
+        <i class="fa-solid fa-circle-play play" id="play-pause-icon-album" ></i>
+      </span>
+    </div>
+    <div class="card-body">
+      <% if @podcasts.empty? %>
+        <div>
+          <h2 class="text-center fw-bold text-color-green pt-2">Podcast Empty</h2>
+        </div>
+      <% else %>
+        <p class="text_opacity_50">Popular</p>
+        <%= render 'podcast_table', podcasts: @podcasts %>
+      <% end %>
+    </div>
+  </div>
+  <%= javascript_include_tag 'users/podcast_albums/albums_show_page' %>
+<% end %>

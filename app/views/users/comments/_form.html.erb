@@ -1,0 +1,17 @@
+<%= form_with(model: comment, url: url, id: "#{dom_id(commentable)}_#{dom_id(comment)}_form", class: "comment_form", data: {controller: "emoji-picker", emoji_picker_target: "form"}) do |form| %>
+   <%= content_tag(:div, "", class: "pickerContainer", data: {
+      emoji_picker_target: "pickerContainer" }, id: "#{dom_id(commentable)}_#{dom_id(comment)}_pickerContainer}" )%>
+  <div>
+    <%= form.rich_text_area :comment, class: "form form-control #{'is-invalid' if comment.errors[:comment].any?}", placeholder: "Comment here!", data: { emoji_picker_target: "trixEditor" }, id: "#{dom_id(commentable)}_#{dom_id(comment)}_comment_area}" %>
+  </div>
+
+  <div class="form-check form-switch">
+    <% checked_value = comment.anonymous.present? ? comment.anonymous : current_user.anonymous %>
+    <%= form.check_box :anonymous, checked: checked_value, checked_value: true, unchecked_value: false, class: "form form-check-input", type: "checkbox", role: "switch", id: "#{dom_id(commentable)}_#{dom_id(comment)}_anonymous}" %>
+    <%= form.label :anonymous, for: "#{dom_id(commentable)}_#{dom_id(comment)}_anonymous}", class: "form-check-label"  %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-light form custom_submit", id: "#{dom_id(commentable)}_#{dom_id(comment)}_submit}" %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<% if !@podcast.errors.any? %>
+    <%= turbo_stream.replace "#{dom_id(@podcast)}" do  %>
+        <%= render partial: "users/podcasts/podcast", locals: { podcast: @podcast }%>
+        <script>
+            $("#exampleModal").modal("hide")
+        </script>
+    <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
+
+
+
+

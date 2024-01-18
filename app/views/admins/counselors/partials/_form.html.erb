@@ -1,0 +1,70 @@
+<% user_type = {"User"=>"User", "Counselor"=>"Counselor"} %>
+<div class="form-user">
+  <%= form_with(model: [:admins,counselor], id: "#{dom_id(counselor)}_form" ) do |form| %>
+   <%= form.hidden_field :page , value: (params[:page] || 1), name: "page" %>
+    <%= form.fields_for :user_info do |user_info_fields| %>
+      <div class="row mb-1 gy-2 gx-3 ">
+        <div class="col">
+          <%= form.label :user_name, "UserName" %>
+          <%= form.text_field :user_name, class: 'form-control' %>
+          <% if counselor.errors.include?(:user_name) %>
+            <div class="text-danger"><%= counselor.errors[:user_name].first %></div>
+          <% end %>
+        </div>
+        <div class="col">
+          <%= form.label :email, "Email" %>
+          <% if counselor.id  %>
+            <%= form.email_field :email, class: 'form-control', disabled:true %>
+          <% else %>
+            <%= form.email_field :email, class: 'form-control'%>
+          <% end %>
+          <% if counselor.errors.include?(:email) %>
+            <div class="text-danger"><%= counselor.errors[:email].first %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row mb-1 gy-2 gx-3 ">
+        <div class="col">
+          <%= user_info_fields.label :profile_name,"Name" %>
+          <%= user_info_fields.text_field :profile_name, class: 'form-control'%>
+        </div>
+        <div class="col">
+          <%= form.label :phone_number, "Phone" %>
+          <%= form.telephone_field :phone_number, class: 'form-control' %>
+          <% if counselor.errors.include?(:phone_number) %>
+            <div class="text-danger"><%= counselor.errors[:phone_number].first %></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="row mb-1 gy-2 gx-3 ">
+        <div class="col">
+          <%= user_info_fields.label :date_of_birth, "Birthday" %>
+          <%= user_info_fields.date_field :date_of_birth, class: 'form-control' %>
+        </div>
+        <div class="col">
+          <%= user_info_fields.label :gender %>
+          <%= user_info_fields.select :gender, UserInfo.genders, {selected: user_info_fields.object.gender}, class: 'form-select'%>
+        </div>
+      </div>
+      <div class="row mb-1 gy-2 gx-3 ">
+        <div class="col">
+          <%= form.label :type, "Type" %>
+          <%= form.select :type, user_type,{}, class: 'form-select'%>
+        </div>
+        <div class="col">
+          <%= form.label :status, "Status" %>
+          <%= form.select :status, User.statuses,{}, class: 'form-select', "aria-label":"Default select example" %>
+        </div>
+      </div>
+      <div class="row mb-1 gy-2 gx-3 ">
+        <div class="col">
+          <%= user_info_fields.label :address %>
+          <%= user_info_fields.text_field :address, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-actions text-center">
+      <%= form.submit "Submit", class: "btn btn-lg mt-2 border_button_green bg_button_green bg_button_green_hover text-white" %>
+    </div>
+  <% end %>
+</div>

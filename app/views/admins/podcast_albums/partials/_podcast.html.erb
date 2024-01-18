@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h5 class="modal-title text_green">Update Podcast Album</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="alert alert-danger" role="alert" style="display:none" id="alert_edit">
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col" style="margin-bottom: 15px">
+      <button class="btn btn-primary bg_green border_green" onclick="openModalCreatePodcast(<%= podcast_album_id %>)"><i class="fa-solid fa-plus"></i> New</button>
+    </div>
+  </div>
+  <table class = 'table mx-auto table-condensed text-center align-middle text-green' id='all_podcast'>
+    <% if podcast.length != 0 %>
+    <thead>
+    <tr class="table-light">
+      <th scope="col">ID</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Podcast Name</th>
+      <th scope="col" colspan="3">Action</th>
+    </tr>
+    </thead>
+    <tbody id="podcast_table">
+    <% podcast.each do |pod| %>
+      <tr id="podcast-<%= pod.id %>">
+        <td><%= pod.id %></td>
+        <% if pod.image? %>
+          <td><%= image_tag pod.image.url, alt: "Podcast Avatar", class: "",style: "width: 80px; height: 80px; border-radius: 50%" %></td>
+        <% else %>
+          <td><%= image_tag 'podcast.jpg', alt: "Album Avatar", class: "",style: " height: 80px; border-radius: 50%" %></td>
+        <% end %>
+        <td id="podcast_name_<%= pod.id %>" data-id="<%= pod.id %>"><input class="form-control" type='text' value='<%= pod.name %>' id='input_name_podcast_<%= pod.id %>'></td>
+        <td class="text-end"><button class="btn btn-warning button_cancel" data-id="<%= pod.id %>" onclick="cancelEdit(<%= pod.id %>)"><i class="fa-solid fa-arrow-rotate-left"></i></button></td>
+        <td class="text-center"><button class="btn btn-danger delete_podcast" data-id="<%= pod.id %>" onclick="deletePodcast(<%= pod.id %>)"><i class="fa-solid fa-trash"></i></button></td>
+        <td class="text-start"><button class="btn btn-primary bg_green border_green button_done" data-id="<%= pod.id %>" onclick="updatePodcast(<%= pod.id %>)"><i class="fa-solid fa-check"></i></button></td>
+      </tr>
+    <% end %>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+
+<!-- Modal create podcast-->
+<div class="modal fade" id="modalCreatePodcast">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <%= render 'admins/podcast_albums/partials/form_podcast', podcast_album_id: podcast_album_id %>
+    </div>
+  </div>
+</div>
+
+
+<%= javascript_include_tag 'admins/podcast_album/manager_podcast' %>

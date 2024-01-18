@@ -1,0 +1,19 @@
+
+<div id="<%= dom_id podcast %>">
+    <div class="col-3">
+    <button class="button_hidden_podcast" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <%= link_to edit_users_podcast_path(podcast), data:{turbo_frame: "modal_for_podcast"}, class: "button_show_podcast" do %>
+            <div class="card item">
+                <div class="card-body d-flex flex-column justify-content-center">
+                        <%= podcast.image? ? image_tag(podcast.image_url, class: "podcast_image") :  image_tag("podcast_default.jpg", class: "podcast_image") %>
+                        <div class="podcast_name"><%=podcast.name%></div>
+                        <div class="podcast_author"><%=podcast.author_name%></div>
+                    <div class="album_name"><%=podcast.podcast_album.name%></div>
+                </div>
+            </div>
+        <% end %>
+        </button>
+    </div>
+</div>
+
+

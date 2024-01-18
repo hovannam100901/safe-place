@@ -1,0 +1,15 @@
+<% if @room.errors.any? %>
+  <%= turbo_stream.replace "#{dom_id(@room)}" do %>
+    <%= render "admins/counselors/partials/form", room: @room %>
+  <% end %>
+<% else %>
+    <%= turbo_stream.replace "#{dom_id(@room)}" do %>
+        <%= render partial: "admins/rooms/partials/room_table", locals: { room: @room } %>
+        <%# <script>
+                $("#exampleModal2").modal('hide');
+        </script> %>
+    <% end %>
+    <%= turbo_stream.update "room_model", partial: "admins/rooms/partials/form", locals: {room: Room.new} %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

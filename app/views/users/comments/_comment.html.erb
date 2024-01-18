@@ -1,0 +1,19 @@
+<div class="d-flex flex-start custom_comment" id="<%= "#{dom_id(comment)}" %>">
+    <img class="rounded-circle shadow-1-strong me-3"
+    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="50"
+    height="50" />
+    <div class="card w-100 comment_body">
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6><%= comment.user.user_name %></h6>
+                    <%= link_to "!#", class: "custom_link", id: "#{dom_id(comment)}_like", data: {turbo_method: :post} do %>
+                        <%= render "users/shared/like", user: user, item: comment %>
+                    <% end %>
+                </div>
+                <p class="time_ago"><%= time_ago_in_words(comment.created_at) %> ago</p>
+            </div>
+            <%= comment.comment.body %>
+        </div>
+    </div>
+</div>

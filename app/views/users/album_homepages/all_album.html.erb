@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "main" do %>
+    <div class="all_album">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-start album_item_container">
+                    <% @albums.each_with_index do |album, index| %>
+                        <%= render "users/album_homepages/album", album: album, index: index%>
+                    <% end %> 
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

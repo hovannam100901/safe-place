@@ -1,0 +1,54 @@
+<div class="card w-80 mb-3 mt-3">
+  <div class="card-body ">
+    <%# <h5 class="card-title">Search room</h5> %>
+    <%= search_form_for @q, url:admins_rooms_path, class: 'd-flex justify-content-begin' do |f| %>
+      <div class="input-group mb-3 input_search_room">
+        <%= f.search_field :name_cont, class: 'form-control me-2', placeholder: 'Search room name' %>
+        <%= f.submit 'Search', class: 'btn btn-outline-success ', type: 'submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="card w-80">
+  <div class="card-body">
+    <h5 class="card-title">List rooms</h5>
+    <button class="button_hidden" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+      <%= link_to 'Add room', new_admins_room_path, data: {turbo_frame: 'custom_room'}, class: "btn btn-success no-underline custom-link"%>
+    </button>
+    <p class="card-text">
+      <%#= turbo_frame_tag "room" do  %>
+      <table class = 'table mx-auto table-condensed text-center align-middle'>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Room Name</th>
+            <th scope="col">User in room</th>
+            <th scope="col">Counsoler</th>
+            <th scope="col">Enable room</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+      <tbody id="room_table">
+          <% @rooms.each do |room| %>
+            <%#= turbo_stream_from "rooms" %>
+            <%= render "admins/rooms/partials/room_table", room: room %>
+          <% end %>
+      </tbody>
+      </table>
+        <%# end %>
+    </p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center" id="paginate-element">
+  <%= paginate @rooms, theme: 'bootstrap-5' %>
+</div>
+
+<%# modal- create %>
+<%= render 'admins/rooms/partials/modal'%>
+
+<%#= javascript_include_tag "jquery" %>
+<%#= javascript_include_tag 'admins/change_status' %>
+
+

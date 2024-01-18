@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="card text-green" style="margin-top: 50px; border-radius: 15px">
+    <div class="card-body" style="padding: 30px">
+      <h4 class="text_green">Search Form</h4>
+      <div class="row">
+        <div class="col-10">
+          <%= search_form_for @q, url: admins_podcast_albums_path, class: "input-group" do |f| %>
+            <%= f.search_field :name_cont, class: "form-control rounded", placeholder: "Search by album name", style: 'margin-right: 5px' %>
+            <%= f.search_field :user_user_name_cont, class: "form-control rounded", placeholder: "Search by user name", style: 'margin-right: 5px' %>
+            <%= f.submit 'Search', class: "btn btn-outline-primary button_hover text_green border_green" %>
+          <% end %>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary bg_green border_green button_hover" id='btnShowCreateModal'><i class="fa-solid fa-plus"></i> New Album</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="podcast_albums" class="card" style="margin-top: 50px; border-radius: 15px">
+    <div class="card-body">
+      <h1 class="text_green">Podcast albums</h1>
+      <table class = 'table mx-auto table-condensed text-center align-middle text-green'>
+        <thead>
+        <tr class="table-light">
+          <th scope="col">ID</th>
+          <th scope="col">Avatar</th>
+          <th scope="col">Album Name</th>
+          <th scope="col">Username</th>
+          <th scope="col" colspan="3">Action</th>
+        </tr>
+        </thead>
+        <tbody id="album_table">
+        <%= render 'admins/podcast_albums/partials/album_table', podcast_albums: @podcast_albums %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-end" id="paginate-element">
+        <nav aria-label="Page navigation example">
+          <%= paginate @podcast_albums, theme: 'bootstrap-5' %>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal create-->
+<div id="modalCreateAlbum" class="modal hide fade" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text_green">Create</h5>
+        <button type="button" id="closeModalCreateAlbum" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="alert alert-danger" role="alert" style="display:none;">
+      </div>
+      <%= render 'admins/podcast_albums/partials/form', podcast_album: @podcast_album %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal update-->
+<div id="modalUpdateAlbum" class="modal hide fade" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<!-- Modal show album-->
+<div id="modalShowAlbum" class="modal hide fade" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<style>
+  .bg_green{
+      background-color: #1F7564;
+  }
+  .border_green{
+      border-color: #1F7564;
+  }
+  .text_green{
+      color: #1F7564;
+  }
+  .button_hover:hover, .button_hover:active, .button_hover:focus {
+      background-color: #175549;
+      border-color: #175549;
+  }
+  .button_border{
+      border-radius: 30px;
+  }
+</style>
+<script type="module">
+    $('#btnShowCreateModal').on('click', () => {
+        $('#modalCreateAlbum').modal('show');
+    })
+    $('#closeModalCreateAlbum').on('click', () => {
+        $('#album_img').attr('src', "../assets/podcast.jpg");
+        $('#modalCreateAlbum form').trigger('reset');
+    })
+    $("#modalCreateAlbum").on('hidden.bs.modal', () => {
+        $('#album_img').attr('src', "../assets/podcast.jpg");
+        $('#modalCreateAlbum form').trigger('reset');
+    })
+</script>

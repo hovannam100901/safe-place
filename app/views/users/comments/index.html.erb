@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "#{dom_id(@commentable)}_comments" do %>
+  <div class="container text-dark">
+    <div class="row d-flex justify-content-center">
+      <%= turbo_frame_tag "#{dom_id(@commentable)}_new_comment", src: new_users_confession_comment_path(@commentable), loading: :lazy do %>
+        <div class="centered_container centered_confession_frame">
+          <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+        </div>
+      <% end %>
+      <div class="custom_breaker"></div>
+      <div class="col" id="<%="#{dom_id(@commentable)}_comments_body"%>">
+        <%= render "users/comments/comments", user: current_user, comments: @comments %>
+      </div>
+      <% if @has_next_page %>
+        <%= turbo_frame_tag "#{dom_id(@commentable)}_comments_pagination", src: send("users_#{@commentable.class.to_s.underscore}_comments_path", @commentable, page: @current_page + 1, format: :turbo_stream), loading: "lazy" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

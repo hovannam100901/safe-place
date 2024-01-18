@@ -1,0 +1,11 @@
+<% if @result[:success] == true %>
+  $("#modalUpdateAlbum").modal('hide');
+  window.location.reload()
+<% else %>
+//  $('#modalUpdateAlbum form').reset()
+  <% flash[:message].each do |val| %>
+    $("#alert_edit").prepend('<%= val %>')
+  <% end %>
+  $("#alert_edit").attr("style", "display:block")
+
+<% end %>

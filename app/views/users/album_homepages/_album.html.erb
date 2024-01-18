@@ -1,0 +1,21 @@
+<div class="album_homepage_detail <%= index % 2 == 0 ? ' ' : 'pink' %>" id="album_<%=album.id%>">
+    <%= link_to users_album_homepage_path(album), class:"button_show_album" do %>
+        <div class="d-flex flex-column align-items-center">
+            <div class="d-flex flex-column">
+                <% if album.image? %>
+                    <%= image_tag album.image_url, alt: "Album Avatar", class: "album-avatar", id: 'album_img' %>
+                <% else %>
+                    <%= image_tag("album_default.jpg", alt: "Image", class: "album-avatar", id: 'album_img') %>
+                <% end %>
+                <div class="album_info">
+                    <div class="album_title_album_name"><%= album.name%></div>
+                    <div class="album_title_user_name"><%= album.user.user_name%></div>
+                    <div class="d-flex justify-content-end align-content-center">
+                        <div class="album_title_user_name"><%= formatted_duration(album.total_duration) %></div>
+                        <i class="fa-regular fa-clock icon_time"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

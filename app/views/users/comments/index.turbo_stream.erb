@@ -1,0 +1,8 @@
+<%= turbo_stream.append("#{dom_id(@commentable)}_comments_body") do %>
+  <%= render "users/comments/comments", user: current_user, comments: @comments %>
+<% end %>
+<% if @has_next_page %>
+  <%= turbo_stream.replace "#{dom_id(@commentable)}_comments_pagination" do %>
+    <%= turbo_frame_tag "#{dom_id(@commentable)}_comments_pagination", src: send("users_#{@commentable.class.to_s.underscore}_comments_path", @commentable, page: @current_page + 1, format: :turbo_stream), loading: "lazy" %>
+  <% end %>
+<% end %>

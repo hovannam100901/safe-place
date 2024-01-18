@@ -1,0 +1,47 @@
+<% is_like = Like.where('user_id = ? and likeable_type = ? and likeable_id = ?',current_user.id, podcast_album.class.to_s, podcast_album.id).present?  %>
+<% is_bookmark = current_user.bookmarks.exists?(bookmarkable: podcast_album) %>
+<%= hidden_field_tag "is_like_#{podcast_album.id}", is_like %>
+<%= hidden_field_tag "is_bookmark_#{podcast_album.id}", is_bookmark %>
+<div id="<%= dom_id podcast_album %>">
+  <div class="d-flex justify-content-between align-content-start show_podcast_album">
+    <span class="button_hidden_album" data-bs-toggle="modal" data-bs-target="#listPodcastModal">
+      <%= link_to users_podcast_album_path(podcast_album), data: {turbo_frame: "show_list_podcast"}, class: "button_show_podcast" do %>
+        <div class="d-flex">
+          <div class="p-2">
+            <%= podcast_album.image? ? image_tag(podcast_album.image_url, class: "podcast_album_image") : image_tag("album_default.jpg", class: "podcast_album_image") %>
+          </div>
+          <div class="p-2 d-flex flex-column align-items-start">
+            <div class="album_name"><%= podcast_album.name%></div>
+            <div class="album_date"><%= podcast_album.created_at.strftime("%b %d, %Y")%></div>
+          </div>
+        </div>
+      <% end %>
+    </span>
+    <div class="ml-auto d-flex justify-content-around flex-column">
+      <div class="p-2 col d-flex">
+        <div class="col" id='like_album'>
+          <% if is_like %>
+            <div class="like_link" onclick='likeFunction(this, <%= podcast_album.id %>)'><i class="fa-solid fa-heart text-danger"></i></div>
+          <% else %>
+            <div class="like_link" onclick="likeFunction(this, <%= podcast_album.id %>)"><i class="fa-regular fa-heart text-danger"></i></div>
+          <% end %>
+        </div>
+        <div class="col">
+          <% if is_bookmark %>
+            <div class="bookmark_link" onclick='bookmarkFunction(this, <%= podcast_album.id %>)'><i class="fa-solid fa-bookmark text-danger"></i></div>
+          <% else  %>
+            <div class="bookmark_link" onclick="bookmarkFunction(this, <%= podcast_album.id %>)"><i class="fa-regular fa-bookmark text-danger"></i></div>
+          <% end  %>
+        </div>
+      </div>
+      <div class="col d-flex ms-auto p-2 bd-highlight">
+        <span class="button_hidden_album" data-bs-toggle="modal" data-bs-target="#podcastAlbumModal" >
+          <%= link_to edit_users_podcast_album_path(podcast_album), data: {turbo_frame: "modal_for_podcast_album"} do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

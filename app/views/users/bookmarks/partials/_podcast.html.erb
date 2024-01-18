@@ -1,0 +1,29 @@
+<div class="podcast d-flex justify-content-between align-items-center" >
+    <div class="d-flex">
+        <div>
+            <% if podcast.image? %>
+                <%= image_tag podcasts.image_url, class: "image" %>
+            <% else %>
+                <%= image_tag "podcast_default.jpg", class: "image" %>
+            <% end %>
+        </div>
+        <div class="ms-3 d-flex flex-column">
+            <div>Episode <%=podcast.episode_number %>: <%=podcast.name%></div>
+            <div>Author: <%=podcast.author_name%></div>
+            <div class="d-flex justify-content-between">
+                <div><%=podcast.created_at.strftime("%b %d, %Y")%></div>
+                <div class="d-flex align-items-center">
+                    <i class="fa-regular fa-clock"></i>
+                    <div class="ms-2">
+                        <%=formatted_duration(podcast.duration)%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ms-5">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        </div>
+    </div>
+</div>

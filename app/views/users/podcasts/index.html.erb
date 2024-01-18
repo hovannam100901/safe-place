@@ -1,0 +1,67 @@
+<%= turbo_frame_tag "main" do %>
+  <div class="container-fluid show_podcast" >
+    <div class="row">
+        <div class="card card_index" >
+          <div class="card-body body_index">
+             <div class="row">
+              <div class="col-4">
+                <div class="card card_album">
+                  <div class="card-title">
+                    <p class="text-center album_title">
+                      Album
+                    </p>
+                  </div>
+                    <div class="card-body body_album">
+                      <%= turbo_frame_tag "albums" do %>
+                        <% if @podcast_albums.empty? %>
+                          <div>
+                            <div class="index_text">No album available</div>
+                          </div>
+                        <% else %>
+                          <% @podcast_albums.each do |podcast_album| %>
+                            <%= render "podcast_album", podcast_album: podcast_album%>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-8 d-flex flex-column justify-content-between">
+                 <div class="d-flex flex-column align-items-center text-center center_frame">
+                    <h2>Podcasts are not just voices; they are emotions and knowledge shared through sound. When you upload a podcast, you are sharing a part of yourself with the world.</h2>        
+                    <div class="row-md-7">
+                      <span style="background-color: transparent; border: none;" class="col button_hidden" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <%= link_to "Create podcast",new_users_podcast_path, data:{turbo_frame: "modal_for_podcast"},class: "btn button_create_podcast"%>
+                      </span>
+                      <span style="background-color: transparent; border: none;" class="col button_hidden" data-bs-toggle="modal" data-bs-target="#podcastAlbumModal">
+                        <%= link_to "Create Album",new_users_podcast_album_path, data:{turbo_frame: "modal_for_podcast_album"},class: "btn button_create_podcast"%>
+                      </span>
+                    </div>
+                  </div>  
+                  <div class="row justify-content-center show_podcast_detail">
+                    <div class="scrolling-container">
+                      <%= turbo_frame_tag "recent_podcasts_frame" do %>
+                        <% @recent_podcasts.each do |recent_podcast| %>
+                            <%= render "podcast", podcast: recent_podcast %>
+                        <% end %>
+                      <% end %>
+                      </div>
+                    </div>
+              </div>
+             </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<%= render "users/podcasts/modal"%>
+<%= render "users/podcast_albums/modal"%>
+<%= render "users/podcast_albums/podcast_modal"%>
+<% end %>
+
+
+
+
+
+
+

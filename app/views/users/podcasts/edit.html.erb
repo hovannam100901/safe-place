@@ -1,0 +1,8 @@
+ 
+
+    <%= turbo_frame_tag "modal_for_podcast" do%>
+      <div class="text-center">
+        <h1 class="form_title_podcast">Edit podcast</h1>
+      </div>
+        <%= render "form", podcast: @podcast %>
+    <% end %>

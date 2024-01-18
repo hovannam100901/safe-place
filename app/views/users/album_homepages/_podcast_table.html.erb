@@ -1,0 +1,43 @@
+  <table class="table table-borderless mx-auto table-condensed align-middle" >
+    <thead>
+      <th class="col-md-1 fw-lighter text_opacity_50 width_id_col">#</th>
+      <th class="col-md-1 fw-lighter text_opacity_50">Title</th>
+      <th class="col-md-5"></th>
+      <th class="col-md-3 fw-lighter text_opacity_50">Date added</th>
+      <th class="col-md-1 text_opacity_50"><i class="fa-regular fa-clock" ></i></th>
+    </thead>
+    <tbody>
+      <% podcasts.each do |podcast| %>
+        <% if user_signed_in? %>
+          <% if current_user.likes.exists?(likeable: podcast) %>
+            <%= hidden_field_tag 'liked_podcast', podcast.id, id:"liked_podcast_#{podcast.id}" %>
+          <% end %>
+          <% if current_user.bookmarks.exists?(bookmarkable: podcast) %>
+            <%= hidden_field_tag 'bookmarked_podcast', podcast.id, id:"bookmarked_podcast_#{podcast.id}" %>
+          <% end %>
+        <% end %>
+        <tr>
+          <td class="text_opacity_50"><%= podcast.episode_number %></td>
+          <td>
+            <% if podcast.image? %>
+              <%= image_tag podcast.image_url, alt: "Album Avatar", id: "album_img_#{podcast.id}", 
+                class: "podcast-item",  width: "100", height: "100", data: { audio: podcast } %>
+            <% else %>
+              <%= image_tag "podcast_default.jpg", alt: "Image", id: "album_img_#{podcast.id}", 
+                class: "podcast-item",  width: "100", height: "100", data: { audio: podcast } %>
+            <% end %>
+          </td>
+          <td>
+            <p class="fs-4"><%= podcast.name %></p>
+            <p class="text_opacity_50"><%= podcast.author_name %></p>
+          </td>
+          <td class="text_opacity_50">
+            <%= podcast.created_at.strftime("%b %d, %Y") %>
+          </td>
+          <td class="text_opacity_50 time">
+            <%= formatted_duration(podcast.duration) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

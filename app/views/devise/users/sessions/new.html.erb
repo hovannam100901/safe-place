@@ -1,0 +1,32 @@
+<%= render "shared/flash"%>
+<div class="container-fluid">
+  <div class="row justify-content-center custom_user_form_container">
+    <h1 class="text-center align-self-end mb-4 text-color-green fw-bold">Log in to SafePlace Vietnam</h1>
+    <div class="col-md-4">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'needs-validation' }) do |f| %>
+        <div class="mb-3">
+          <%= f.label :email,"Email or Username", class: 'form-label text-color-green fw-bold fs-4' %>
+          <%= f.email_field :email, class: 'form-control input-login', placeholder:"Email or Username", required: true %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, class: 'form-label text-color-green fw-bold fs-4' %>
+          <%= f.password_field :password, class: 'form-control input-login', placeholder:"Password", required: true %>
+        </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="form-check form-switch mb-3">
+            <%= f.check_box :remember_me, class: 'form-check-input', id: "flexSwitchCheckChecked" %>
+            <label class="form-check-label text-color-green fw-medium ml-2" for="flexSwitchCheckChecked">Remember me</label>
+          </div>
+        <% end %>
+        <div class="text-center mb-3">
+          <%= f.submit "Log In", class: 'btn btn-success btn-lg w-100 h-100 btn-submit fw-bold'%>
+        </div>
+      <% end %>
+      <%= link_to 'Forgot your password?', new_user_password_path, class: 'd-block text-center mt-5 mb-5 text-color-green fw-bold fs-4' %>
+      <p class="text-center text-color-green fw-medium">Don't have account? <%= link_to 'Sign up for SafePlace Vietnam', new_user_registration_path, class: "text-color-green fw-bold" %></p>
+    </div>
+  </div>
+</div>
+<script>
+  localStorage.removeItem("mediaPlayer");
+</script>

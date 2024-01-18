@@ -1,0 +1,27 @@
+<div class="confesssion_show">
+  <div class="d-flex">
+    <% if confession.anonymous %>
+      <h5>
+        Anonymous Post
+      </h5>
+    <% else %>
+      <img class="rounded-circle shadow-1-strong me-3"
+      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="50"
+      height="50" />
+      <div class="d-flex flex-column">
+        <h5>
+          <%= confession.user.user_name %>
+        </h5>
+        <p class="time_ago"><%= time_ago_in_words(confession.created_at) %> ago</p>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <div class="confession_body">
+    <%= confession.content.body %>
+  </div>
+  <br>
+  <div class="text-center custom_tag">
+    <%= render "users/confessions/confession_card_tag", confession: confession %>
+  </div>
+</div>

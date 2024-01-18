@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css?family=League+Spartan');
+@import "admins/login";
+@import "admins/user_admin";
+@import "admins/podcast_admin";
+@import "admins/left_menu";
+@import "admins/manager_podcast";
+
+.list_dropdown {
+  transform: translate3d(0px, 58px, 0px) !important;
+  border-radius : 0px;
+  background-color: #f4f3ef;
+}
+.show{
+  // background-color: #f4f3ef !important;
+}
+
+.color_admins {
+  background-color: #f4f3ef;
+}
+
+.page_content {
+  width: 100% !important;
+}
+
+.color_header {
+  background-color: #f4f3ef !important;
+  width: 100% !important;
+}
+
+.top_admin_page{
+  font-size: x-large;
+  padding: .5rem 1rem;
+  height: 57px;
+}
+
+.sidenav a:hover {
+  color: black !important;
+}
+
+.nav_side {
+  width: 22%;
+  height: 100vh;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+.item_down {
+  background-color: #f4f3ef !important;
+}
+
+.item_down :hover {
+  background-color: #f4f3ef !important;
+  color: black !important;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+@media (max-width: 870px) {
+  .nav_side {
+    display: none;
+  }
+}
+
+// @keyframes slideOut {
+//   0% {
+//     width: 22%;
+//   }
+//   22% {
+//     width: 0;
+//   }
+// }
+
+#sidebar-wrapper {
+  animation: slideOut 0.5s ease-out;
+}
+
+.btn_dashboard {
+  top: 0;
+}
+
+.btn_dropdown {
+  border-radius: 0px;
+}
+
+.new_room{
+  margin: 17vh 10vh !important; 
+  // background-color: #fff ; 
+}
+
+.form_modal_room{
+  padding: 5vh !important;
+
+}
+
+// css for room
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  display: table-header-group;
+}
+
+.tr {
+  display: table-row;
+}
+
+.th,
+.td {
+  display: table-cell;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Bootstrap-like classes */
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.align-middle {
+  vertical-align: middle !important;
+}
+
+
+.custom-link {
+  color: #fff; 
+  text-decoration: none; 
+}
+
+.custom-link-delete{
+  color: black; 
+  text-decoration: none;
+}
+
+
+.logout_admin{
+  padding: 8px;
+}
+
+.switch_status:checked{
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #fff;
+}
+
+.input_search_room{
+  width: 50vh;
+}
+
+.color_sign_out{
+  color: black;
+}
+
+.edit_room_view{
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.title_edit_room_admin{
+  padding: 5px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.input_room_edit{
+  display: inherit;
+  align-items: center;
+}
+
+.lable_room_edit{
+  width: 26vh;
+}
+
+.width_btn_room{
+  width: 11vh;
+}
+
+

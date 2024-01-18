@@ -1,0 +1,54 @@
+<footer class="footer section mt-auto main_footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2 justify_content">
+                <div>
+                    <h3>About us</h3>
+                    <%= link_to "Contact us", contact_path %>
+                    <br>
+                    <%= link_to "About safe place", about_app_path %>
+                    <br>
+                    <%= link_to "Term and condition", term_path %>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-2 justify_content">
+                <div>
+                    <h3>Communities</h3>
+                    <%= link_to "About us", about_us_path %>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-2 justify_content">
+                <div>
+                    <h3>Useful links</h3>
+                    <%= link_to "Support", support_path %>
+                    <br>
+                    <%= link_to "Free Mobile App", mobile_app_path %>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-2 justify_content">
+                <div>
+                    <span>
+                        <%= link_to root_path, class: "facebook" do %>
+                            <i class="fa-brands fa-facebook fa-2xl"></i>
+                        <% end %>
+                    </span>
+                    <span class="spacing"></span>
+                    <span>
+                        <%= link_to root_path, class: "youtube" do %>
+                            <i class="fa-brands fa-square-youtube fa-2xl"></i>
+                        <% end %>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,49 @@
+<div class="container-fluid podcast_form_container">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <%= form_with(model: [:users, podcast],  id:"my_form") do |f| %>
+        <div class="modal-body">
+              <div class="text-center">
+                <label for="img-input" class="image-label">
+                    <%= f.file_field :image, class: "form-control", id: 'img-input', style: "display: none;" %>
+                    <% if podcast.image? %>
+                        <%= image_tag podcast.image_url, alt: "Album Avatar", class: "album-avatar", id: 'album_img' %>
+                    <% else %>
+                      <%= image_tag("camera.png", alt: "Image", class: "album-avatar", id: 'album_img') %>
+                    <% end %>
+                </label>
+              </div>
+              <div class="row mb-4 align-items-center">
+                <%= f.label :name, class: "col-md-3 label form_podcast_label" %>
+                <%= f.text_field :name, class: "col form-control form_podcast_textfield" %>
+              </div>
+              <div class="row mb-4 align-items-center">
+                <%= f.label :author_name, class: "col-md-3 label form_podcast_label" %>
+                <%= f.text_field :author_name, class: "col form-control form_podcast_textfield" %>
+              </div>
+              <div class="row mb-4 align-items-center">
+                <%= f.label :audio, class: "col-md-3 label form_podcast_label" %>
+                 <%= f.file_field :audio, class: "col form-control form_podcast_textfield" %>
+              </div>
+              <div class="row mb-4 align-items-center">
+                <%= f.label :episode_number, class: "col-md-3 label form_podcast_label" %>
+                <%= f.text_field :episode_number, class: "col form-control form_podcast_textfield" %>
+              </div>
+              <div class="row mb-4 align-items-center">
+                <%= f.label :podcast_album, class: "col-md-3 label form_podcast_label" %>
+                 <%= f.collection_select :podcast_album_id, PodcastAlbum.where(user_id: current_user.id), :id, :name, { prompt: "Select an album" }, class: "col form-control form_podcast_textfield", id: "collection_name" %>
+              </div>
+        </div>
+        <div class="row">
+            <% if podcast.persisted? %>
+              <%= link_to "Delete", users_podcast_path(podcast), id: "deleteButton", class: "col btn btn-danger button_close", data: {turbo_method: :delete} %>
+            <% end %>
+            <%= f.submit class: "col btn button_add", style: "background-color: #1F7564; color: #fff; border: 2px solid #1F7564; font-size: 18px; margin: 10px 10px 25px 10px;" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'users/podcasts/close_podcast_modal'%>
+<%= javascript_include_tag 'users/podcasts/podcast' %>

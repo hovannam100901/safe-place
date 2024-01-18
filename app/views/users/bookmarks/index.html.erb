@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "main" do %>
+<div class="list_bookmark">
+    <div class="card">
+        <div class="card-body">
+                <div class="d-flex flex-column"> 
+                    <% @bookmarks.each do |bookmark| %>
+                        <% if bookmark.bookmarkable.instance_of?(PodcastAlbum) %>
+                        <%= render "users/bookmarks/partials/podcast_album", podcast_album: bookmark.bookmarkable%>
+                        <% elsif bookmark.bookmarkable.instance_of?(Podcast)%>
+                        <%= render "users/bookmarks/partials/podcast", podcast: bookmark.bookmarkable%>
+                        <% else %>
+                        <%= render "users/bookmarks/partials/confession", confession: bookmark.bookmarkable%>
+                        <% end %>
+                    <% end %>
+            </div>
+            <div class="d-flex justify-content-center mt-1" id="paginate-user-table">
+                <nav aria-label="Page navigation example">
+                    <%= paginate @bookmarks, theme: 'bootstrap-5', window: 1 %>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

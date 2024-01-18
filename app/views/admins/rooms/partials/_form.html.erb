@@ -1,0 +1,25 @@
+<div class="container-fluid form-user" id="room_model">
+<%= form_with(model: [:admins, room], class: "form_modal_room") do |form| %>
+        <%#= render "shared/flash" %>
+
+  <div class="row mb-5">
+    <div class="col">
+      <%= form.label :name, "Room Name" %>
+      <%= form.text_field :name, class: 'form-control' %>
+      <% if room.errors.include?(:name) %>
+          <div class="text-danger"><%= room.errors[:name].first %></div>
+      <% end %>
+    </div>
+    <div class="col">
+        <%= form.label :counselor_id, " Name counselor" %>
+      <%= form.select :counselor_id, User.where(type:"Counselor").map{|c| [c.user_name, c.id]}, {}, class: "form-control form-select mb-3" %>
+    </div>
+  </div>
+
+  <div class="form-actions d-flex justify-content-center">
+    <%= form.submit "Submit", class: "btn btn-success btn-lg"%>
+    
+  </div>
+<% end %>
+</div>
+

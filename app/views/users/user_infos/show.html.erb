@@ -1,0 +1,117 @@
+<%= link_to root_path do %>
+  <i class="fa-solid fa-angle-left button_back_user_info"></i>
+<% end %>
+<div class="container-fluid user_infos_container">
+  <div class = "row justify-content-center">
+    <div class="col-lg-6">
+        <div class="user_infos_title">Account Overview</div>
+        <div class="d-flex justify-content-between align-item-center">
+          <div class="d-flex">
+            <div class="user_infos_label">Profile</div>
+            <% if @user.user_info.avatar? %>
+              <%= image_tag @user.user_info.avatar_url, class:"profile_image"%>
+            <% end %>
+          </div>
+          <div class="d-flex align-items-center">
+            <p class="fs-4 mb-0">Anonymous</p>
+            <div class="form-check form-switch ms-2">
+              <%= check_box_tag "user_anonymous_#{current_user.id}", "1", current_user.anonymous, class: "form-check-input user-change-anonymous-switch", id: "user_change_anonymous_#{current_user.id}" %>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 ">
+          <div class="card-body ">
+            <div class="row">
+              <div class="text-muted col-sm-7">
+                <p class="mb-0 form_user_infos_label">Email</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.email%></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0 form_user_infos_label">Username</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.user_name%></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0 form_user_infos_label">Phone number</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.phone_number%></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0 form_user_infos_label">Gender</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.user_info.gender %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0 form_user_infos_label">Date of birth</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.user_info.date_of_birth %></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-7">
+                <p class="text-muted mb-0 form_user_infos_label">Province</p>
+              </div>
+              <div class="col-sm-5">
+                <p class="mb-0 form_user_infos_textfield"><%= @user.user_info.address %></p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+        <button style="background-color: transparent; border: none;" class="button_hidden" data-bs-toggle="modal" data-bs-target="#edit_user_modal">
+            <div class = "btn btn-outline-secondary button_edit">Edit profile</div>
+        </button>
+
+        <h2 class="user_infos_label">Support</h2>
+        <div class="row align-items-center" style="color: 1F7564;">
+            <button type="button" class="btn button_send_request">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col support_textfield">Send a question</div>
+                    <div class="col"><%= image_tag("arrow.png", alt: "Image") %></div>
+                </div>
+            </button>
+        </div>
+        <div class="row align-items-center" >
+            <button type="button" class="btn button_customer_care">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col support_textfield">Customer are call center</div>
+                    <div class="col"><%= image_tag("person.png", alt: "Image") %></div>
+                </div>
+            </button>
+        </div>
+        <h2 class="user_infos_label">Q&A</h2>
+        <div class="row align-items-center">
+            <%= image_tag("poster.png", alt: "Image") %>
+        </div>
+        <div class="text-center">
+          <span style="background-color: transparent; border: none;" data-bs-toggle="modal" data-bs-target="#edit-password-modal">
+            <%= link_to "Change password", edit_user_registration_path, class:"btn btn-outline-secondary button_change_pw", data: {turbo_frame: "change_password"} %>
+          </span>
+        </div>
+  </div>
+</div>
+<%= javascript_include_tag 'users/user_change_anonymous' %>
+<%= render "users/user_infos/modal_password"%>
+<%= render "users/user_infos/modal", user: @user%>
+
+
+

@@ -1,0 +1,13 @@
+<% if @comment.errors.any? %>
+  <%= turbo_stream.replace "#{dom_id(@commentable)}_#{dom_id(Comment.new)}_form" do %>
+    <%= render "users/comments/form", commentable: @commentable, comment: @comment, url: send("users_#{@commentable.class.to_s.underscore}_comments_path", @commentable) %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.replace "#{dom_id(@commentable)}_#{dom_id(Comment.new)}_form" do %>
+    <%= render "users/comments/form", commentable: @commentable, comment: @commentable.comments.new, url: send("users_#{@commentable.class.to_s.underscore}_comments_path", @commentable) %>
+  <% end %>
+  <%= turbo_stream.update "#{dom_id(@commentable)}_count_comments" do %>
+    <%= render 'users/shared/count_comments', commentable: @commentable %>
+  <% end %>
+<% end %>
+<%= render_turbo_stream_flash_messages %>
